@@ -11,6 +11,7 @@ export interface AnalysisResult {
 
 export interface AnalysisState {
     code: string;
+    analyzedCode: string;
     loading: boolean;
     error: string | null;
     result: AnalysisResult | null;

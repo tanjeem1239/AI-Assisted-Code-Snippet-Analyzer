@@ -8,15 +8,22 @@ export const mockLLMResponse = {
 };
 
 export function mockSummary(code: string): string {
-  const trimmed = code.slice(0, 200).replace(/\s+/g, ' ');
-  return `This code appears to perform operations involving: ${inferTopics(code)}. Snippet: "${trimmed}..."`;
+  const cleaned = code.replace(/\/\/.*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, '');
+  const topics = inferTopics(cleaned);
+  const hasAsync = /\basync\b|\bawait\b/.test(cleaned);
+  const hasClasses = /\bclass\s+\w+/.test(cleaned);
+  const hasExports = /\bexport\b/.test(cleaned);
+  const hasImports = /\bimport\b/.test(cleaned);
+  const focus = hasClasses ? 'defines one or more classes' : /function\s+\w+/.test(cleaned) ? 'implements function logic' : 'contains general logic';
+  return `Brief Summary: The code ${focus} related to ${topics}. ${hasAsync ? 'It uses async/await patterns. ' : ''}${hasImports ? 'Imports are present. ' : ''}${hasExports ? 'It exports symbols. ' : ''}`;
 }
 
 function inferTopics(code: string): string {
   const topics: string[] = [];
   if (/fetch|axios/i.test(code)) topics.push('HTTP requests');
-  if (/React|useState|useEffect/.test(code)) topics.push('React state/effects');
-  if (/class\s+\w+/.test(code)) topics.push('classes');
-  if (/async|await/.test(code)) topics.push('async operations');
+  if (/React|useState|useEffect/.test(code)) topics.push('React state or lifecycle');
+  if (/class\s+\w+/.test(code)) topics.push('class-based structures');
+  if (/async|await/.test(code)) topics.push('asynchronous operations');
+  if (/interface\s+\w+|type\s+\w+\s*=/.test(code)) topics.push('TypeScript type definitions');
   return topics.length ? topics.join(', ') : 'general JS/TS logic';
 }

@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 interface Props {
   value: string;
   onChange: (v: string) => void;
-  onAnalyze: () => void;
   disabled?: boolean;
 }
 
-export const CodeInput: React.FC<Props> = ({ value, onChange, onAnalyze, disabled }) => {
+export const CodeInput: React.FC<Props> = ({ value, onChange, disabled }) => {
   const [code, setCode] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
 
@@ -27,7 +26,6 @@ export const CodeInput: React.FC<Props> = ({ value, onChange, onAnalyze, disable
         rows={14}
         style={{ width: '100%', fontFamily: 'monospace' }}
       />
-      <button onClick={onAnalyze} disabled={disabled}>Analyze</button>
       {error && <div style={{ color: 'red' }}>{error}</div>}
     </div>
   );

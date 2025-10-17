@@ -7,6 +7,7 @@ import { mockSummary } from '../services/mockResponse';
 export function useCodeAnalysis() {
   const [state, setState] = useState<AnalysisState>({
     code: '',
+    analyzedCode: '',
     loading: false,
     error: null,
     result: null
@@ -26,7 +27,7 @@ export function useCodeAnalysis() {
       const metrics = staticAnalyze(state.code);
       const llm = await summarizeCode(state.code);
       const summary = llm.summary.includes('LLM key missing') ? mockSummary(state.code) : llm.summary;
-      setState(s => ({ ...s, loading: false, result: { summary, metrics } }));
+      setState(s => ({ ...s, loading: false, analyzedCode: state.code, result: { summary, metrics } }));
     } catch (e: any) {
       setState(s => ({ ...s, loading: false, error: e.message || 'Unknown error' }));
     }
