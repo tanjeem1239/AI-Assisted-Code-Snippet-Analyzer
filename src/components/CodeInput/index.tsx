@@ -23,7 +23,7 @@ export const CodeInput: React.FC<Props> = ({ value, onChange, disabled }) => {
         placeholder="Paste JavaScript/TypeScript code..."
         value={code}
         onChange={handleChange}
-        rows={14}
+        rows={30}
         style={{ width: '100%', fontFamily: 'monospace' }}
       />
       {error && <div style={{ color: 'red' }}>{error}</div>}

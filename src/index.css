@@ -2,20 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   html, body { @apply bg-slate-900 text-slate-100 font-sans m-0; }
 }
-
 @layer components {
-  .app-shell { @apply mx-auto p-4 flex flex-col gap-5; }
-  .app-title { @apply text-2xl font-semibold tracking-wide mb-4; }
-  .layout-row { @apply flex gap-6 flex-wrap items-start; }
-  .panel-col { @apply flex flex-col gap-3 flex-1 min-w-[320px]; }
-  button.primary { @apply px-4 py-2 rounded-md border transition-colors text-sm font-medium bg-blue-600 border-blue-700 text-white hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed; }
-  textarea { @apply w-full rounded-md p-3 text-sm resize-y min-h-[260px] bg-slate-800 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600 disabled:opacity-50 disabled:cursor-not-allowed; }
-
-  /* Analysis Result */
   .analysis-result-ui { @apply flex flex-col gap-4; }
   .summary-header { @apply flex items-center gap-3; }
   .summary-source { @apply text-xs px-2 py-1 rounded bg-blue-600 text-white font-medium; }
@@ -34,9 +24,7 @@
   .metrics-and-code { @apply grid gap-4 mt-4 md:grid-cols-[280px_1fr]; }
   .metrics-pane, .code-pane { @apply bg-slate-800 border border-slate-700 rounded-md p-4 flex flex-col gap-3; }
   .pane-title { @apply text-sm font-semibold tracking-wide m-0; }
-  .badge { @apply inline-block; }
 }
-
 @layer utilities {
   .whitespace-pre-wrap { white-space: pre-wrap; }
 }

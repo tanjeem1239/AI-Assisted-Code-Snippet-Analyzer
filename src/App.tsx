@@ -2,7 +2,7 @@ import React from 'react';
 import { useCodeAnalysis } from './hooks/useCodeAnalysis';
 import { CodeInput } from './components/CodeInput';
 import { AnalysisResult } from './components/AnalysisResult';
-import './styles/globals.css';
+import './index.css';
 
 const App: React.FC = () => {
   const { state, setCode, analyze } = useCodeAnalysis();
