@@ -3,6 +3,7 @@
 
 interface LLMResponse { summary: string; }
 // Groq configuration
+//kept it public for testing, but should be secured in real use
 const GROQ_KEY = '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';
 const GROQ_MODEL = import.meta.env.VITE_GROQ_MODEL || 'llama-3.1-8b-instant';
 const DISABLE_REMOTE = (import.meta.env.VITE_DISABLE_LLM_REMOTE || '').toLowerCase() === 'true';
