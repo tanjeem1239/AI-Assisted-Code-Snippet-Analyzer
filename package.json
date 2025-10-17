@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "tailwind:build": "tailwindcss -c tailwind.config.js -i ./src/styles/globals.css -o ./src/styles/tw-output.css --watch"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -25,6 +26,9 @@
     "@vitejs/plugin-react": "^4.2.1",
     "typescript": "^5.4.5",
     "vite": "^5.4.20",
-    "vitest": "^1.5.0"
+    "vitest": "^1.5.0",
+    "tailwindcss": "^3.4.10",
+    "postcss": "^8.4.31",
+    "autoprefixer": "^10.4.19"
   }
 }

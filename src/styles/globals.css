@@ -1,39 +1,77 @@
-html, body, #root {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: system-ui, Arial, sans-serif;
-    background-color: #f9fafb;
-    color: #111;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { 
+    --bg:#f7f9fc; 
+    --text:#111; 
+    --border:#d0d7e2; 
+    --panel-bg:#ffffff; 
+    --accent:#2563eb; 
+    --radius:12px; 
+    --shadow:0 4px 12px rgba(0,0,0,0.06); 
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    padding: 0;
+.dark { 
+    --bg:#0f172a; 
+    --text:#f1f5f9; 
+    --border:#1e293b; 
+    --panel-bg:#1e293b; 
+    --accent:#3b82f6; 
+    --shadow:0 4px 16px rgba(0,0,0,0.5); 
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+body { 
+    @apply font-sans m-0; 
+    background:var(--bg); 
+    color:var(--text); 
 }
 
-button {
-    margin-top: 0.5rem;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
+.app-shell { 
+    @apply max-w-[1400px] mx-auto p-4 flex flex-col gap-5; 
 }
 
-textarea {
-    width: 100%;
-    height: 200px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    font-family: monospace;
-    resize: none;
-    box-sizing: border-box;
+.app-title { 
+    @apply text-2xl font-semibold tracking-wide mb-4; 
+}
+
+.layout-row { 
+    @apply flex gap-4 items-start; 
+}
+
+.panel-col { 
+    @apply flex-1 min-w-0; 
+}
+
+button { 
+    @apply px-4 py-2 rounded-md border transition-colors text-sm; 
+    border-color:var(--border); 
+    background:var(--panel-bg); 
+    color:var(--text); 
+}
+
+button:hover:not(:disabled) { 
+    background:var(--accent); 
+    color:#fff; 
+    border-color:var(--accent); 
+}
+
+button.primary { 
+    background:var(--accent); 
+    color:#fff; 
+    border-color:var(--accent); 
+}
+
+button.primary:disabled { 
+    @apply opacity-50 cursor-not-allowed; 
+}
+
+textarea { 
+    @apply w-full rounded-md p-3 text-sm resize-y min-h-[260px]; 
+    background:inherit; 
+    color:inherit; 
+    border:1px solid var(--border); 
+    font-family:monospace; 
 }
 
 .loading {
@@ -63,3 +101,13 @@ textarea {
     padding: 15px;
     margin-top: 20px;
 }
+
+.syntax-highlighter { 
+    @apply rounded-lg shadow-soft; 
+}
+
+/* Utility tweaks */
+.text-xs { font-size:0.75rem; }
+.opacity-70 { opacity:.7; }
+.mt-2 { margin-top:0.5rem; }
+.m-0 { margin:0; }

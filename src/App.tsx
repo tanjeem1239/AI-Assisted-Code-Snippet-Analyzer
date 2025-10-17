@@ -7,20 +7,31 @@ import './styles/globals.css';
 const App: React.FC = () => {
   const { state, setCode, analyze } = useCodeAnalysis();
   return (
-    <div style={{ maxWidth: 960, margin: '0 auto', padding: '1rem' }}>
-      <h1>AI-Assisted Code Snippet Analyzer</h1>
-      <CodeInput
-        value={state.code}
-        onChange={setCode}
-        onAnalyze={analyze}
-        disabled={!state.code.trim() || state.loading}
-      />
-      <AnalysisResult
-        loading={state.loading}
-        error={state.error}
-        result={state.result}
-        code={state.code}
-      />
+    <div className="app-shell">
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="app-title m-0">AI-Assisted Code Snippet Analyzer</h1>
+        <button className="primary my-2" onClick={analyze} disabled={!state.code.trim() || state.loading}>{state.loading ? 'Analyzing…' : 'Analyze'}</button>
+      </div>
+      <div className="layout-row">
+        <div className="panel-col">
+          <CodeInput
+            value={state.code}
+            onChange={setCode}
+            disabled={state.loading}
+          />
+          {state.result && state.code !== state.analyzedCode && (
+            <p className="text-xs mt-2 opacity-70">Code changed since last analysis. Press Analyze to update.</p>
+          )}
+        </div>
+        <div className="panel-col">
+          <AnalysisResult
+            loading={state.loading}
+            error={state.error}
+            result={state.result}
+            code={state.analyzedCode}
+          />
+        </div>
+      </div>
     </div>
   );
 };

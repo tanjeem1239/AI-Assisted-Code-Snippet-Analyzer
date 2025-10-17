@@ -14,9 +14,9 @@ interface Props {
 export const AnalysisResult: React.FC<Props> = ({ loading, error, result, code }) => {
   if (loading) return <p>Analyzing...</p>;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
-  if (!result) return null;
+  if (!result) return <p className="text-sm opacity-70">No analysis yet. Paste code and click Analyze.</p>;
   return (
-    <div style={{ marginTop: '1rem' }}>
+    <div style={{ marginTop: '0' }}>
       <h3>Summary</h3>
       <p>{result.summary}</p>
       <h3>Metrics</h3>

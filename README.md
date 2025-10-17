@@ -28,5 +28,21 @@ npm run test
 npm run build
 ```
 
+## Styling
+Tailwind CSS integrated. Utility classes available in components. Custom variables coexist with Tailwind.
+
+### Tailwind Setup
+Make sure to install dependencies:
+```
+npm install tailwindcss postcss autoprefixer
+```
+Then restart `npm run dev`. Tailwind directives live in `src/styles/globals.css`.
+
+### Adding Styles
+Use utility classes directly or extend in tailwind.config.js. Global custom classes in globals.css.
+
 ## Notes
 Client calls OpenAI directly; for production use a backend proxy.
+
+### Behavior
+Editing code does not update displayed analyzed snippet until Analyze is clicked; previous analysis snapshot retained.
